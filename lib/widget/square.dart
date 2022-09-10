@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:vip_number_app/model/numberModel.dart';
 
 class Square extends StatelessWidget {
   final int price;
@@ -66,11 +68,19 @@ class Square extends StatelessWidget {
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
             ),
           ),
-          Center(
-            child: ElevatedButton(
-              child: Text("Add to Cart"),
-              onPressed: () {},
-            ),
+          Consumer(
+            builder: (context, ref, child) {
+              return Center(
+                child: ElevatedButton(
+                  child: Text("Add to Cart"),
+                  onPressed: () {
+                    final numberProvider = Provider((ref) => NumberProvider());
+                    final provider = ref.watch(numberProvider);
+                    // provider.onClicked == true;
+                  },
+                ),
+              );
+            },
           )
         ],
       ),

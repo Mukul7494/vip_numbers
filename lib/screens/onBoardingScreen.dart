@@ -46,7 +46,7 @@ class OnBoardingScreen extends StatelessWidget {
       showNextButton: false,
       showDoneButton: true,
       done: Text("Next"),
-      onDone: () => context.go("/home"),
+      onDone: () => context.go('/home'),
       showSkipButton: true,
       skip: Text('Skip'),
       onSkip: () => context.go('/home'),

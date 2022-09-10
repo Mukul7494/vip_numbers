@@ -27,18 +27,18 @@ class _HomePageState extends State<HomePage> {
             actions: [
               IconButton(
                   onPressed: () {
-                    context.go("/Search");
+                    context.push("/Search");
                   },
                   icon: Icon(Icons.search))
             ],
           ),
           drawer: Drawer(),
           body: ListView.builder(
-            itemCount: numberGetter.number.length,
+            itemCount: numberGetter.getNumber.length,
             itemBuilder: (BuildContext context, int index) {
               return Square(
-                price: numberGetter.number[index]['price'],
-                number: numberGetter.number[index]['number'],
+                price: numberGetter.getNumber[index].price,
+                number: numberGetter.getNumber[index].number,
               );
             },
           ),
