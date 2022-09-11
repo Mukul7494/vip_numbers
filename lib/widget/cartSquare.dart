@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:vip_number_app/model/numberModel.dart';
 // import 'package:vip_number_app/model/numberModel.dart';
 import 'package:vip_number_app/screens/cart.dart';
 
-import '../model/numberModel.dart';
+// import '../model/numberModel.dart';
 
 // import '../model/cartModel.dart';
 
@@ -87,13 +88,13 @@ class _CartSquareState extends State<CartSquare> {
           ),
           Consumer(
             builder: (context, ref, child) {
+              final provider = ref.watch(cartProvider1);
+              // final numProvider = ref.watch(numberProvider);
               return Center(
                 child: ElevatedButton(
                   child: Text("Remove"),
                   onPressed: () {
-                    final provider = ref.watch(cartProvider1);
-// provider.cart.iterator.current.id
-                    provider.removeNumber(5);
+                    provider.removeNumber(provider.cart.iterator.current.id);
                     // final number1 = ref.watch(numberProvider);
                   },
                 ),

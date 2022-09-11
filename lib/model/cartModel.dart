@@ -1,4 +1,8 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
+
+import 'numberModel.dart';
 
 class cartModel {
   int? id;
@@ -25,7 +29,8 @@ class CartProvider extends ChangeNotifier {
   }
 
   void removeNumber(int id) {
-    _cart.remove(id);
+    _cart.removeWhere((index) => index.id == id);
+    // remove(id);
     print("lolllll");
     notifyListeners();
   }

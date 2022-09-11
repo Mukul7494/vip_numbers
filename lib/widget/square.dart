@@ -81,6 +81,11 @@ class Square extends StatelessWidget {
                   child: Text("Add to Cart"),
                   onPressed: () {
                     // final numberProvider = Provider((ref) => NumberProvider());
+                    // ignore: deprecated_member_use
+                    Scaffold.of(context).showSnackBar(SnackBar(
+                      content: Text('Your Number Added to cart'),
+                      duration: Duration(seconds: 2),
+                    ));
                     final number1 = ref.watch(numberProvider);
                     final provider = ref.watch(cartProvider1);
                     provider.addNumber(
