@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+final numberProvider = ChangeNotifierProvider((ref) => NumberProvider());
 
 class Number {
   int number;
   int price;
-  String? filter;
-  Number({required this.number, required this.price, this.filter});
+  String filter;
+  bool inCart;
+  int id;
+  Number(
+      {required this.number,
+      required this.price,
+      this.filter = '',
+      this.inCart = false,
+      required this.id});
 }
 
 class NumberProvider extends ChangeNotifier {
@@ -14,26 +24,31 @@ class NumberProvider extends ChangeNotifier {
       number: 7869265470,
       price: 5501,
       filter: '786',
+      id: 1,
     ),
     Number(
       number: 7869275736,
       price: 521,
       filter: '786',
+      id: 2,
     ),
     Number(
       number: 7869282927,
       price: 786,
       filter: '786',
+      id: 3,
     ),
     Number(
       number: 7869208268,
       price: 507,
       filter: '786',
+      id: 4,
     ),
     Number(
       number: 7269891786,
       price: 5601,
       filter: '786',
+      id: 5,
     ),
 
 //ending
@@ -44,39 +59,49 @@ class NumberProvider extends ChangeNotifier {
       number: 9805585858,
       price: 5201,
       filter: 'AB AB AB',
+      id: 6,
     ),
 
     Number(
       number: 7248848484,
       price: 561,
       filter: 'AB AB AB',
+      id: 7,
     ),
 
     Number(
       number: 7024989898,
       price: 5651,
       filter: 'AB AB AB',
+      id: 8,
     ),
 
     Number(
       number: 7439202020,
       price: 502,
       filter: 'AB AB AB',
+      id: 9,
     ),
 
     Number(
       number: 9083797979,
       price: 501,
       filter: 'AB AB AB',
+      id: 10,
     ),
 
 //ending
     //starting of 12345
-    Number(number: 8012345793, price: 5301, filter: '12345'),
-    Number(number: 9506112345, price: 5041, filter: '12345'),
-    Number(number: 8012345728, price: 5601, filter: '12345'),
-    Number(number: 8012345397, price: 5701, filter: '12345'),
-    Number(number: 9805123456, price: 5201, filter: '12345'),
+    Number(number: 8012345793, price: 5301, filter: '12345', id: 11),
+    Number(number: 9506112345, price: 5041, filter: '12345', id: 12),
+    Number(number: 8012345728, price: 5601, filter: '12345', id: 13),
+    Number(number: 8012345397, price: 5701, filter: '12345', id: 14),
+    Number(
+      number: 9805123456,
+      price: 5201,
+      filter: '12345',
+      id: 15,
+    ),
 //ending
 
 // //starting of aaa bbb
@@ -85,27 +110,32 @@ class NumberProvider extends ChangeNotifier {
       number: 9997774851,
       price: 5601,
       filter: 'AAA BBB',
+      id: 16,
     ),
 
     Number(
       number: 9997776740,
       price: 5501,
       filter: 'AAA BBB',
+      id: 17,
     ),
     Number(
       number: 9993339062,
       price: 5301,
       filter: 'AAA BBB',
+      id: 18,
     ),
     Number(
       number: 9997774806,
       price: 5401,
       filter: 'AAA BBB',
+      id: 19,
     ),
     Number(
       number: 9997775780,
       price: 511,
       filter: 'AAA BBB',
+      id: 20,
     ),
 // ending
 
@@ -114,30 +144,42 @@ class NumberProvider extends ChangeNotifier {
       number: 9589580060,
       price: 5021,
       filter: 'ABC ABC',
+      id: 21,
     ),
     Number(
       number: 9669660031,
       price: 4001,
       filter: 'ABC ABC',
+      id: 22,
     ),
     Number(
       number: 8268264477,
       price: 201,
       filter: 'ABC ABC',
+      id: 23,
     ),
     Number(
       number: 9839830630,
       price: 501,
       filter: 'ABC ABC',
+      id: 24,
     ),
     Number(
       number: 9559554054,
       price: 500,
       filter: 'ABC ABC',
+      id: 25,
     ),
 //ending
   ];
   List<Number> get getNumber => _number;
+  // List<Number> get numberInCart =>
+  //     _number.where((element) => element.inCart == true).toList();
+  // bool toggleNumberStatus(Number number) {
+  //   number.inCart = !number.inCart;
+  //   notifyListeners();
+  //   return number.inCart;
+  // }
 }
 
 

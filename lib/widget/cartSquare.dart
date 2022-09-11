@@ -7,13 +7,24 @@ import '../model/numberModel.dart';
 
 // import '../model/cartModel.dart';
 
-class Square extends StatelessWidget {
+class CartSquare extends StatefulWidget {
   final int price;
   final int number;
   final String? filter;
-  final int? index;
-  Square({required this.price, required this.number, this.filter, this.index});
+  final int? id;
+  // final int? index;
+  CartSquare({
+    required this.price,
+    required this.number,
+    this.filter,
+    this.id,
+  });
 
+  @override
+  State<CartSquare> createState() => _CartSquareState();
+}
+
+class _CartSquareState extends State<CartSquare> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -35,7 +46,7 @@ class Square extends StatelessWidget {
             width: double.infinity,
             height: 25,
             child: Text(
-              "₹ ${price}",
+              "₹ ${widget.price}",
               style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
@@ -56,7 +67,7 @@ class Square extends StatelessWidget {
             width: double.infinity,
             color: Colors.blue,
             child: Text(
-              number.toString(),
+              widget.number.toString(),
               style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
             ),
           ),
@@ -78,16 +89,12 @@ class Square extends StatelessWidget {
             builder: (context, ref, child) {
               return Center(
                 child: ElevatedButton(
-                  child: Text("Add to Cart"),
+                  child: Text("Remove"),
                   onPressed: () {
-                    // final numberProvider = Provider((ref) => NumberProvider());
-                    final number1 = ref.watch(numberProvider);
                     final provider = ref.watch(cartProvider1);
-                    provider.addNumber(
-                        number1.getNumber.elementAt(index!).id,
-                        number1.getNumber.elementAt(index!).number,
-                        number1.getNumber.elementAt(index!).price,
-                        number1.getNumber.elementAt(index!).filter);
+// provider.cart.iterator.current.id
+                    provider.removeNumber(5);
+                    // final number1 = ref.watch(numberProvider);
                   },
                 ),
               );

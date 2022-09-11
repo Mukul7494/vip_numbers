@@ -18,8 +18,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Consumer(
       builder: (context, ref, child) {
-        final numberProvider =
-            ChangeNotifierProvider((ref) => NumberProvider());
+        // final numberProvider =
+        //     ChangeNotifierProvider((ref) => NumberProvider());
         final numberGetter = ref.watch(numberProvider);
         return Scaffold(
           appBar: AppBar(
@@ -37,6 +37,7 @@ class _HomePageState extends State<HomePage> {
             itemCount: numberGetter.getNumber.length,
             itemBuilder: (BuildContext context, int index) {
               return Square(
+                index: index,
                 price: numberGetter.getNumber[index].price,
                 number: numberGetter.getNumber[index].number,
               );
