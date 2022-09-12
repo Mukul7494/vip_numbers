@@ -1,30 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:vip_number_app/screens/cart.dart';
 import 'package:vip_number_app/screens/homepage.dart';
+import 'package:vip_number_app/screens/soldScreen.dart';
 // import 'package:vip_number_app/screens/onBoardingScreen.dart';
 
 class BottomNavigation extends StatefulWidget {
-  BottomNavigation({Key? key}) : super(key: key);
+  const BottomNavigation({Key? key}) : super(key: key);
 
   @override
   State<BottomNavigation> createState() => _BottomNavigation();
 }
 
 final screens = [
-  HomePage(),
+  const HomePage(),
   const Center(
     child: Text(
       "Profile",
       style: TextStyle(fontSize: 50),
     ),
   ),
-  const Center(
-    child: Text(
-      "Sold",
-      style: TextStyle(fontSize: 50),
-    ),
-  ),
-  Cart(),
+  SoldScreen(),
+  const Cart(),
 ];
 int _currentIndex = 0;
 

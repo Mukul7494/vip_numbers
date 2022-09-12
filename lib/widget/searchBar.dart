@@ -18,9 +18,9 @@ class SearchPage extends StatelessWidget {
           child: Center(
             child: TextField(
               decoration: InputDecoration(
-                prefix: Icon(Icons.search),
+                prefix: const Icon(Icons.search),
                 suffixIcon: IconButton(
-                  icon: Icon(Icons.clear),
+                  icon: const Icon(Icons.clear),
                   onPressed: () {
                     context.pop();
                   },

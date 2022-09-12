@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:vip_number_app/model/cartModel.dart';
+// import 'package:vip_number_app/model/cartModel.dart';
+import 'package:vip_number_app/model/soldModel.dart';
 // import 'package:vip_number_app/model/numberModel.dart';
 // import 'package:vip_number_app/widget/square.dart';
 
 import '../widget/cartSquare.dart';
+import '../widget/soldSquare.dart';
 
-final cartProvider1 = ChangeNotifierProvider((ref) => CartProvider());
-
-class Cart extends ConsumerWidget {
-  const Cart({Key? key}) : super(key: key);
+class SoldScreen extends ConsumerWidget {
+  const SoldScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final provider = ref.watch(cartProvider1);
+    final provider = ref.watch(soldProvider);
     return provider.cart.isEmpty
         ? const Center(
             child: Text(
@@ -30,7 +30,7 @@ class Cart extends ConsumerWidget {
                   separatorBuilder: (context, index) => Container(height: 5),
                   itemCount: provider.cart.length,
                   itemBuilder: (context, index) {
-                    return CartSquare(
+                    return SoldSquare(
                       id: provider.cart[index].id,
                       price: provider.cart[index].price ?? 0,
                       number: provider.cart[index].number ?? 0,

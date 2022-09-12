@@ -11,18 +11,18 @@ final router = GoRouter(
     GoRoute(
       name: "home",
       path: "/",
-      builder: (context, state) => OnBoardingScreen(),
+      builder: (context, state) => const OnBoardingScreen(),
     ),
     GoRoute(
       name: "resultPage",
       path: "/home",
-      builder: (context, state) => BottomNavigation(),
+      builder: (context, state) => const BottomNavigation(),
       // routes: [],
     ),
     GoRoute(
       name: "searchPage",
       path: "/Search",
-      pageBuilder: (context, state) => MaterialPage(child: SearchPage()),
+      pageBuilder: (context, state) => const MaterialPage(child: SearchPage()),
     )
   ],
 );

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'cartModel.dart';
+
 final numberProvider = ChangeNotifierProvider((ref) => NumberProvider());
 
 class Number {
@@ -18,7 +20,7 @@ class Number {
 }
 
 class NumberProvider extends ChangeNotifier {
-  List<Number> _number = [
+  final List<Number> _number = [
     //starting of 786 numbers
     Number(
       number: 7869265470,
@@ -173,13 +175,17 @@ class NumberProvider extends ChangeNotifier {
 //ending
   ];
   List<Number> get getNumber => _number;
-  // List<Number> get numberInCart =>
-  //     _number.where((element) => element.inCart == true).toList();
-  // bool toggleNumberStatus(Number number) {
-  //   number.inCart = !number.inCart;
-  //   notifyListeners();
-  //   return number.inCart;
-  // }
+
+  void addNumber(int id, int number, int price, String filter) {
+    _number.add(Number(id: id, number: number, price: price));
+
+    notifyListeners();
+  }
+
+  void removeNumber(int id) {
+    _number.removeWhere((index) => index.id == id);
+    notifyListeners();
+  }
 }
 
 

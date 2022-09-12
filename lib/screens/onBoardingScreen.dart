@@ -15,7 +15,7 @@ class OnBoardingScreen extends StatelessWidget {
           body: 'Here we provider VIP Numbers at low cost ',
           image: Image.asset(
               "assets/how-to-check-if-my-old-phone-number-is-available1..jpeg"),
-          decoration: PageDecoration(
+          decoration: const PageDecoration(
             bodyTextStyle: TextStyle(fontSize: 23),
             titleTextStyle:
                 TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
@@ -26,7 +26,7 @@ class OnBoardingScreen extends StatelessWidget {
             title: 'Simple UI',
             body: 'We have simple to use UI so that user experience increase',
             image: Image.asset("assets/undraw_Team_up_re_84ok.png"),
-            decoration: PageDecoration(
+            decoration: const PageDecoration(
               bodyTextStyle: TextStyle(fontSize: 23),
               titleTextStyle:
                   TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
@@ -35,7 +35,7 @@ class OnBoardingScreen extends StatelessWidget {
           title: '100% Genuine App',
           body: 'We are Loyal and Honest to our customer ',
           image: Image.asset("assets/undraw_Agree_re_hor9.png"),
-          decoration: PageDecoration(
+          decoration: const PageDecoration(
             imagePadding: EdgeInsets.all(15),
             bodyTextStyle: TextStyle(fontSize: 23),
             titleTextStyle:
@@ -45,10 +45,10 @@ class OnBoardingScreen extends StatelessWidget {
       ],
       showNextButton: false,
       showDoneButton: true,
-      done: Text("Next"),
+      done: const Text("Next"),
       onDone: () => context.go('/home'),
       showSkipButton: true,
-      skip: Text('Skip'),
+      skip: const Text('Skip'),
       onSkip: () => context.go('/home'),
     ));
   }

@@ -1,26 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-// import 'package:vip_number_app/model/numberModel.dart';
-import 'package:vip_number_app/screens/cart.dart';
 
-import '../model/numberModel.dart';
-
-// import '../model/cartModel.dart';
-
-class Square extends StatefulWidget {
+class SoldSquare extends StatefulWidget {
   final int price;
   final int number;
   final String? filter;
-  final int? index;
+  final int? id;
+  // final int? index;
   // ignore: use_key_in_widget_constructors
-  const Square(
-      {required this.price, required this.number, this.filter, this.index});
+  const SoldSquare({
+    required this.price,
+    required this.number,
+    this.filter,
+    required this.id,
+  });
 
   @override
-  State<Square> createState() => _SquareState();
+  State<SoldSquare> createState() => _SoldSquareState();
 }
 
-class _SquareState extends State<Square> {
+class _SoldSquareState extends State<SoldSquare> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -81,34 +79,6 @@ class _SquareState extends State<Square> {
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
             ),
           ),
-          Consumer(
-            builder: (context, ref, child) {
-              return Center(
-                child: ElevatedButton(
-                  child: const Text("Add to Cart"),
-                  onPressed: () {
-                    // final numberProvider = Provider((ref) => NumberProvider());
-                    // ignore: deprecated_member_use
-                    Scaffold.of(context).showSnackBar(const SnackBar(
-                      content: Text('Your Number Added to cart'),
-                      duration: Duration(seconds: 2),
-                    ));
-                    final number1 = ref.watch(numberProvider);
-                    final provider = ref.watch(cartProvider1);
-                    provider.addNumber(
-                        number1.getNumber.elementAt(widget.index!).id,
-                        number1.getNumber.elementAt(widget.index!).number,
-                        number1.getNumber.elementAt(widget.index!).price,
-                        number1.getNumber.elementAt(widget.index!).filter);
-                    setState(() {
-                      number1.removeNumber(
-                          number1.getNumber.elementAt(widget.index!).id);
-                    });
-                  },
-                ),
-              );
-            },
-          )
         ],
       ),
     );

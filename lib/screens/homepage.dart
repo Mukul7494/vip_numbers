@@ -6,7 +6,7 @@ import 'package:vip_number_app/model/numberModel.dart';
 import '../widget/square.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -23,16 +23,16 @@ class _HomePageState extends State<HomePage> {
         final numberGetter = ref.watch(numberProvider);
         return Scaffold(
           appBar: AppBar(
-            title: Text("VIP Numbers"),
+            title: const Text("VIP Numbers"),
             actions: [
               IconButton(
                   onPressed: () {
                     context.push("/Search");
                   },
-                  icon: Icon(Icons.search))
+                  icon: const Icon(Icons.search))
             ],
           ),
-          drawer: Drawer(),
+          drawer: const Drawer(),
           body: ListView.builder(
             itemCount: numberGetter.getNumber.length,
             itemBuilder: (BuildContext context, int index) {
