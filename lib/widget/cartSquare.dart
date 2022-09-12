@@ -1,6 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:vip_number_app/model/numberModel.dart';
+// import 'package:vip_number_app/model/numberModel.dart';
 // import 'package:vip_number_app/model/numberModel.dart';
 import 'package:vip_number_app/screens/cart.dart';
 
@@ -18,7 +20,7 @@ class CartSquare extends StatefulWidget {
     required this.price,
     required this.number,
     this.filter,
-    this.id,
+    required this.id,
   });
 
   @override
@@ -94,7 +96,7 @@ class _CartSquareState extends State<CartSquare> {
                 child: ElevatedButton(
                   child: Text("Remove"),
                   onPressed: () {
-                    provider.removeNumber(provider.cart.iterator.current.id);
+                    provider.removeNumber(widget.id ?? 0);
                     // final number1 = ref.watch(numberProvider);
                   },
                 ),

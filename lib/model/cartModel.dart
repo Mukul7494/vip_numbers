@@ -1,16 +1,13 @@
-import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
+import 'package:vip_number_app/model/numberModel.dart';
 
-import 'numberModel.dart';
-
-class cartModel {
+class CartModel {
   int? id;
   int? number;
   int? price;
   String filter;
 
-  cartModel(
+  CartModel(
       {required this.id,
       required this.number,
       required this.price,
@@ -18,20 +15,20 @@ class cartModel {
 }
 
 class CartProvider extends ChangeNotifier {
-  List _cart = [];
+  List<CartModel> _cart = [];
 
-  List get cart => _cart;
+  List<CartModel> get cart => _cart;
 
   void addNumber(int id, int number, int price, String filter) {
-    _cart.add(cartModel(id: id, number: number, price: price));
-    print('lol');
+    _cart.add(CartModel(id: id, number: number, price: price));
+    print(_cart.length);
     notifyListeners();
   }
 
   void removeNumber(int id) {
     _cart.removeWhere((index) => index.id == id);
     // remove(id);
-    print("lolllll");
+    print(_cart.length);
     notifyListeners();
   }
 }

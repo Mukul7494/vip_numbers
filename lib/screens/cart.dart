@@ -31,9 +31,10 @@ class Cart extends ConsumerWidget {
                   itemCount: provider.cart.length,
                   itemBuilder: (context, index) {
                     return CartSquare(
-                        id: provider.cart[index].id,
-                        price: provider.cart[index].price,
-                        number: provider.cart[index].number);
+                      id: provider.cart[index].id,
+                      price: provider.cart[index].price ?? 0,
+                      number: provider.cart[index].number ?? 0,
+                    );
                   },
                 ),
               ],
