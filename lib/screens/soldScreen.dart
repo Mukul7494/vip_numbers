@@ -5,7 +5,7 @@ import 'package:vip_number_app/model/soldModel.dart';
 // import 'package:vip_number_app/model/numberModel.dart';
 // import 'package:vip_number_app/widget/square.dart';
 
-import '../widget/cartSquare.dart';
+// import '../widget/cartSquare.dart';
 import '../widget/soldSquare.dart';
 
 class SoldScreen extends ConsumerWidget {
@@ -17,7 +17,7 @@ class SoldScreen extends ConsumerWidget {
     return provider.cart.isEmpty
         ? const Center(
             child: Text(
-              'Nothing in Cart.',
+              'Nothing Purchased.',
               style: TextStyle(fontSize: 20),
             ),
           )

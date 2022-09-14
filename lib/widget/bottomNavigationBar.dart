@@ -19,7 +19,7 @@ final screens = [
       style: TextStyle(fontSize: 50),
     ),
   ),
-  SoldScreen(),
+  const SoldScreen(),
   const Cart(),
 ];
 int _currentIndex = 0;
@@ -29,18 +29,29 @@ class _BottomNavigation extends State<BottomNavigation> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.black,
+        fixedColor: Colors.black,
         currentIndex: _currentIndex,
         items: const [
           BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: "Home",
-              backgroundColor: Colors.black),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Person"),
+            backgroundColor: Colors.deepOrange,
+            icon: Icon(Icons.home),
+            label: "Home",
+          ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.local_library_outlined), label: "Sold"),
+            icon: Icon(Icons.person),
+            label: "Person",
+            backgroundColor: Colors.blue,
+          ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart), label: "Cart"),
+            icon: Icon(Icons.local_library_outlined),
+            label: "Sold",
+            backgroundColor: Colors.red,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_cart),
+            label: "Cart",
+            backgroundColor: Colors.green,
+          ),
         ],
         onTap: (index) {
           setState(() {

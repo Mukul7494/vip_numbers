@@ -11,40 +11,101 @@ class HomePage extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
 }
+// late List<Number> numbers;
 
 class _HomePageState extends State<HomePage> {
   final numberIndex = 0;
+  String search = '';
+  TextEditingController searchController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Consumer(
       builder: (context, ref, child) {
-        // final numberProvider =
-        //     ChangeNotifierProvider((ref) => NumberProvider());
         final numberGetter = ref.watch(numberProvider);
         return Scaffold(
           appBar: AppBar(
             title: const Text("VIP Numbers"),
-            actions: [
-              IconButton(
-                  onPressed: () {
-                    context.push("/Search");
-                  },
-                  icon: const Icon(Icons.search))
-            ],
+            // actions: [
+            //   IconButton(
+            //       onPressed: () {
+            //         // buildSearch();
+            //         context.push("/Search");
+            //       },
+            //       icon: const Icon(Icons.search))
+            // ],
           ),
           drawer: const Drawer(),
-          body: ListView.builder(
-            itemCount: numberGetter.getNumber.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Square(
-                index: index,
-                price: numberGetter.getNumber[index].price,
-                number: numberGetter.getNumber[index].number,
-              );
-            },
+          body: Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextFormField(
+                    keyboardType: TextInputType.number,
+                    onChanged: (value) {
+                      setState(() {
+                        search = value.toString();
+                      });
+                    },
+                    controller: searchController,
+                    decoration: InputDecoration(
+                        prefixIcon: const Icon(Icons.search),
+                        hintText: 'Search..',
+                        border: const OutlineInputBorder(),
+                        suffixIcon: GestureDetector(
+                          child: const Icon(Icons.clear),
+                          onTap: () {
+                            searchController.clear();
+                            FocusScope.of(context).requestFocus(FocusNode());
+                          },
+                        )),
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: numberGetter.getNumber.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        String number2 =
+                            numberGetter.getNumber[index].number.toString();
+                        // print(number2);
+                        if (searchController.text.isEmpty) {
+                          return Square(
+                            index: index,
+                            price: numberGetter.getNumber[index].price,
+                            number: numberGetter.getNumber[index].number,
+                          );
+                        } else if (number2.contains(search.toLowerCase())) {
+                          return Square(
+                            index: index,
+                            price: numberGetter.getNumber[index].price,
+                            number: numberGetter.getNumber[index].number,
+                          );
+                        } else {
+                          // ignore: avoid_unnecessary_containers
+                          return Container();
+                        }
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
         );
       },
     );
   }
+
+  // Widget buildSearch() => SearchPage(text: query, onChanged: searchNumber);
+  // void searchNumber(int number) {
+  //   final number1 = numbers.where((number) {
+  //     final search = numbers.iterator.current.id;
+
+  //     return search.contains(number);
+  //   }).toList();
+  // }
 }

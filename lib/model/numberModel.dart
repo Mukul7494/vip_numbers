@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'cartModel.dart';
+// import 'cartModel.dart';
 
 final numberProvider = ChangeNotifierProvider((ref) => NumberProvider());
 
@@ -9,13 +9,12 @@ class Number {
   int number;
   int price;
   String filter;
-  bool inCart;
+
   int id;
   Number(
       {required this.number,
       required this.price,
       this.filter = '',
-      this.inCart = false,
       required this.id});
 }
 
@@ -174,7 +173,7 @@ class NumberProvider extends ChangeNotifier {
     ),
 //ending
   ];
-  List<Number> get getNumber => _number;
+  List get getNumber => _number;
 
   void addNumber(int id, int number, int price, String filter) {
     _number.add(Number(id: id, number: number, price: price));
