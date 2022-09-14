@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
+// import 'package:go_router/go_router.dart';
 import 'package:vip_number_app/model/numberModel.dart';
 
 import '../widget/square.dart';
+import 'drawerHeader.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -24,18 +25,42 @@ class _HomePageState extends State<HomePage> {
       builder: (context, ref, child) {
         final numberGetter = ref.watch(numberProvider);
         return Scaffold(
+          floatingActionButton: const FloatingActionButton(
+            onPressed: null,
+            child: Icon(Icons.call),
+          ),
           appBar: AppBar(
             title: const Text("VIP Numbers"),
-            // actions: [
-            //   IconButton(
-            //       onPressed: () {
-            //         // buildSearch();
-            //         context.push("/Search");
-            //       },
-            //       icon: const Icon(Icons.search))
-            // ],
           ),
-          drawer: const Drawer(),
+          drawer: Drawer(
+            child: SingleChildScrollView(
+              child: Container(
+                child: Column(
+                  children: [
+                    const MyDrawerHeader(),
+                    ListTile(
+                      onTap: (() {
+                        null;
+                        // context.go('');
+                      }),
+                      title: const Text("Filter"),
+                      leading: const Icon(Icons.filter),
+                    ),
+                    const ListTile(
+                      title: Text("Contact Us"),
+                      leading: Icon(Icons.contact_page),
+                    ),
+                    const ListTile(
+                      title: Text("About Us"),
+                      leading: Icon(
+                        Icons.person_pin_outlined,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
           body: Center(
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),

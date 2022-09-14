@@ -91,7 +91,7 @@ class _SquareState extends State<Square> {
                     // ignore: deprecated_member_use
                     Scaffold.of(context).showSnackBar(const SnackBar(
                       content: Text('Your Number Added to cart'),
-                      duration: Duration(seconds: 2),
+                      duration: Duration(seconds: 1),
                     ));
                     final number1 = ref.watch(numberProvider);
                     final provider = ref.watch(cartProvider1);

@@ -101,6 +101,11 @@ class _CartSquareState extends State<CartSquare> {
                   ElevatedButton(
                     child: const Text("Remove"),
                     onPressed: () {
+                      // ignore: deprecated_member_use
+                      Scaffold.of(context).showSnackBar(const SnackBar(
+                        content: Text('Number Removed from cart'),
+                        duration: Duration(seconds: 1),
+                      ));
                       provider.removeNumber(widget.id ?? 0);
                       numProvider.addNumber(widget.id ?? 0, widget.number,
                           widget.price, widget.filter.toString());
