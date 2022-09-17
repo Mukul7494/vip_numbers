@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 // import 'package:go_router/go_router.dart';
+// import 'package:go_router/go_router.dart';
 import 'package:vip_number_app/model/numberModel.dart';
 
 import '../widget/square.dart';
@@ -34,36 +35,82 @@ class _HomePageState extends State<HomePage> {
           ),
           drawer: Drawer(
             child: SingleChildScrollView(
-              child: Container(
-                child: Column(
-                  children: [
-                    const MyDrawerHeader(),
-                    ListTile(
-                      onTap: (() {
-                        null;
-                        // context.go('');
-                      }),
-                      title: const Text("Filter"),
-                      leading: const Icon(Icons.filter),
-                    ),
-                    const ListTile(
-                      title: Text("Contact Us"),
-                      leading: Icon(Icons.contact_page),
-                    ),
-                    const ListTile(
-                      title: Text("About Us"),
-                      leading: Icon(
-                        Icons.person_pin_outlined,
+              child: Column(
+                children: [
+                  MyDrawerHeader(),
+                  ExpansionTile(
+                    title: Text("Filter"),
+                    leading: Icon(Icons.filter),
+                    children: [
+                      Padding(padding: EdgeInsets.all(0)),
+                      ListTile(
+                        title: Text("All"),
+                        visualDensity: VisualDensity(vertical: -4),
+                        onTap: () {
+                          search = '';
+
+                          Navigator.of(context).pop();
+                        },
                       ),
+                      ListTile(
+                        title: Text("786"),
+                        visualDensity: VisualDensity(vertical: -4),
+                        onTap: () {
+                          search = '786';
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                      ListTile(
+                        visualDensity: VisualDensity(vertical: -4),
+                        title: Text("ABC ABC"),
+                        onTap: () {
+                          search = "ABC ABC";
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                      ListTile(
+                        visualDensity: VisualDensity(vertical: -4),
+                        title: Text("AB AB AB"),
+                        onTap: () {
+                          search = 'AB AB AB';
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                      ListTile(
+                        visualDensity: VisualDensity(vertical: -4),
+                        title: Text("12345"),
+                        onTap: () {
+                          search = '12345';
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                      ListTile(
+                        visualDensity: VisualDensity(vertical: -4),
+                        title: Text("AAA BBB"),
+                        onTap: () {
+                          search = 'AAA BBB';
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                    ],
+                  ),
+                  ListTile(
+                    title: Text("Contact Us"),
+                    leading: Icon(Icons.contact_page),
+                  ),
+                  ListTile(
+                    title: Text("About Us"),
+                    leading: Icon(
+                      Icons.person_pin_outlined,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
           body: Center(
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 7),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -82,8 +129,10 @@ class _HomePageState extends State<HomePage> {
                         suffixIcon: GestureDetector(
                           child: const Icon(Icons.clear),
                           onTap: () {
-                            searchController.clear();
-                            FocusScope.of(context).requestFocus(FocusNode());
+                            setState(() {
+                              searchController.clear();
+                              FocusScope.of(context).requestFocus(FocusNode());
+                            });
                           },
                         )),
                   ),
@@ -96,14 +145,19 @@ class _HomePageState extends State<HomePage> {
                       itemBuilder: (BuildContext context, int index) {
                         String number2 =
                             numberGetter.getNumber[index].number.toString();
-                        // print(number2);
-                        if (searchController.text.isEmpty) {
+                        String filterNumber =
+                            numberGetter.getNumber[index].filter.toLowerCase();
+
+                        if (search.isEmpty) {
                           return Square(
                             index: index,
                             price: numberGetter.getNumber[index].price,
                             number: numberGetter.getNumber[index].number,
                           );
-                        } else if (number2.contains(search.toLowerCase())) {
+                        }
+
+                        if (number2.contains(search.toLowerCase()) ||
+                            filterNumber.contains(search.toLowerCase())) {
                           return Square(
                             index: index,
                             price: numberGetter.getNumber[index].price,
@@ -124,13 +178,4 @@ class _HomePageState extends State<HomePage> {
       },
     );
   }
-
-  // Widget buildSearch() => SearchPage(text: query, onChanged: searchNumber);
-  // void searchNumber(int number) {
-  //   final number1 = numbers.where((number) {
-  //     final search = numbers.iterator.current.id;
-
-  //     return search.contains(number);
-  //   }).toList();
-  // }
 }

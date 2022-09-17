@@ -63,7 +63,7 @@ class _CartSquareState extends State<CartSquare> {
               borderRadius: BorderRadius.circular(10),
             ),
             width: double.infinity,
-            height: 2,
+            height: 1,
           ),
           Container(
             padding: const EdgeInsets.only(top: 3, bottom: 3, left: 10),
@@ -81,7 +81,7 @@ class _CartSquareState extends State<CartSquare> {
               borderRadius: BorderRadius.circular(10),
             ),
             width: double.infinity,
-            height: 2,
+            height: 1,
           ),
           const Center(
             child: Text(
@@ -114,6 +114,11 @@ class _CartSquareState extends State<CartSquare> {
                   ElevatedButton(
                     child: const Text("Buy"),
                     onPressed: () {
+                      // ignore: deprecated_member_use
+                      Scaffold.of(context).showSnackBar(const SnackBar(
+                        content: Text('Karcha hogya (Purchased)'),
+                        duration: Duration(seconds: 1),
+                      ));
                       provider.removeNumber(widget.id ?? 0);
                       soldProvider1.addNumber(widget.id ?? 0, widget.number,
                           widget.price, widget.filter.toString());

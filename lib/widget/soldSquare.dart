@@ -27,7 +27,7 @@ class _SoldSquareState extends State<SoldSquare> {
         color: const Color.fromARGB(219, 155, 39, 176),
       ),
       margin: const EdgeInsets.only(bottom: 2, top: 2),
-      height: 150,
+      height: 100,
       child: Column(
         children: [
           Container(
@@ -53,7 +53,7 @@ class _SoldSquareState extends State<SoldSquare> {
               borderRadius: BorderRadius.circular(10),
             ),
             width: double.infinity,
-            height: 2,
+            height: 1,
           ),
           Container(
             padding: const EdgeInsets.only(top: 3, bottom: 3, left: 10),
@@ -71,7 +71,7 @@ class _SoldSquareState extends State<SoldSquare> {
               borderRadius: BorderRadius.circular(10),
             ),
             width: double.infinity,
-            height: 2,
+            height: 1,
           ),
           const Center(
             child: Text(
