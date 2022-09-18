@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:vip_number_app/screens/login_screen.dart';
 // import 'package:vip_number_app/screens/homepage.dart';
 // import 'package:vip_number_app/screens/homepage.dart';
 import 'package:vip_number_app/screens/onBoardingScreen.dart';
@@ -9,7 +10,7 @@ final router = GoRouter(
     GoRoute(
       name: "home",
       path: "/",
-      builder: (context, state) => const OnBoardingScreen(),
+      builder: (context, state) => OnBoardingScreen(),
     ),
     GoRoute(
       name: "resultPage",

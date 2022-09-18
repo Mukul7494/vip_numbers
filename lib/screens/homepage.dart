@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 // import 'package:go_router/go_router.dart';
 // import 'package:go_router/go_router.dart';
 import 'package:vip_number_app/model/numberModel.dart';
@@ -19,6 +20,12 @@ class _HomePageState extends State<HomePage> {
   final numberIndex = 0;
   String search = '';
   TextEditingController searchController = TextEditingController();
+  final imageUrl = [
+    {'image': 'assets/index1.jpg'},
+    {'image': 'assets/vip-numbers-400x250.png'},
+    {'image': 'assets/slide-1.jpg'},
+    {'image': 'assets/slide-2.jpg'},
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -108,72 +115,101 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          body: Center(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 7),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  TextFormField(
-                    keyboardType: TextInputType.number,
-                    onChanged: (value) {
-                      setState(() {
-                        search = value.toString();
-                      });
-                    },
-                    controller: searchController,
-                    decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.search),
-                        hintText: 'Search..',
-                        border: const OutlineInputBorder(),
-                        suffixIcon: GestureDetector(
-                          child: const Icon(Icons.clear),
-                          onTap: () {
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                Center(
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 6, horizontal: 7),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        TextFormField(
+                          keyboardType: TextInputType.number,
+                          onChanged: (value) {
                             setState(() {
-                              searchController.clear();
-                              FocusScope.of(context).requestFocus(FocusNode());
+                              search = value.toString();
                             });
                           },
-                        )),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: numberGetter.getNumber.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        String number2 =
-                            numberGetter.getNumber[index].number.toString();
-                        String filterNumber =
-                            numberGetter.getNumber[index].filter.toLowerCase();
+                          controller: searchController,
+                          decoration: InputDecoration(
+                              prefixIcon: const Icon(Icons.search),
+                              hintText: 'Search..',
+                              border: const OutlineInputBorder(),
+                              suffixIcon: GestureDetector(
+                                child: const Icon(Icons.clear),
+                                onTap: () {
+                                  setState(() {
+                                    searchController.clear();
+                                    FocusScope.of(context)
+                                        .requestFocus(FocusNode());
+                                  });
+                                },
+                              )),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        CarouselSlider.builder(
+                            itemCount: imageUrl.length,
+                            itemBuilder: (context, index, realIndex) {
+                              return Container(
+                                margin: EdgeInsets.symmetric(horizontal: 5),
+                                color: Colors.grey,
+                                width: double.infinity,
+                                child: Image.asset(
+                                  imageUrl[index]['image'].toString(),
+                                  fit: BoxFit.fill,
+                                ),
+                              );
+                            },
+                            options: CarouselOptions(
+                                height: 180,
+                                autoPlay: true,
+                                enlargeCenterPage: true,
+                                enlargeStrategy:
+                                    CenterPageEnlargeStrategy.height)),
+                        SizedBox(height: 3),
+                        ListView.builder(
+                          shrinkWrap: true,
+                          primary: false,
+                          itemCount: numberGetter.getNumber.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            String number2 =
+                                numberGetter.getNumber[index].number.toString();
+                            String filterNumber = numberGetter
+                                .getNumber[index].filter
+                                .toLowerCase();
+                            if (search.isEmpty) {
+                              return Square(
+                                index: index,
+                                price: numberGetter.getNumber[index].price,
+                                number: numberGetter.getNumber[index].number,
+                              );
+                            }
 
-                        if (search.isEmpty) {
-                          return Square(
-                            index: index,
-                            price: numberGetter.getNumber[index].price,
-                            number: numberGetter.getNumber[index].number,
-                          );
-                        }
-
-                        if (number2.contains(search.toLowerCase()) ||
-                            filterNumber.contains(search.toLowerCase())) {
-                          return Square(
-                            index: index,
-                            price: numberGetter.getNumber[index].price,
-                            number: numberGetter.getNumber[index].number,
-                          );
-                        } else {
-                          // ignore: avoid_unnecessary_containers
-                          return Container();
-                        }
-                      },
+                            if (number2.contains(search.toLowerCase()) ||
+                                filterNumber.contains(search.toLowerCase())) {
+                              return Square(
+                                index: index,
+                                price: numberGetter.getNumber[index].price,
+                                number: numberGetter.getNumber[index].number,
+                              );
+                            } else {
+                              // ignore: avoid_unnecessary_containers
+                              return Container();
+                            }
+                          },
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
+          backgroundColor: Color.fromARGB(48, 158, 158, 158),
         );
       },
     );

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "551733173226",
+    "project_id": "vip-number-store",
+    "storage_bucket": "vip-number-store.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:551733173226:android:8cd76c829eb13753a7f093",
+        "android_client_info": {
+          "package_name": "com.example.vip_number_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "551733173226-8ck34d72h8cahnj9egpaseckbb23l4po.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHJpKRdYGRdP2dycUmI5ObaE6XsdX9bnw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "551733173226-8ck34d72h8cahnj9egpaseckbb23l4po.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
