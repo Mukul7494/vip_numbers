@@ -1,22 +1,30 @@
 import 'package:go_router/go_router.dart';
 import 'package:vip_number_app/screens/login_screen.dart';
-// import 'package:vip_number_app/screens/homepage.dart';
-// import 'package:vip_number_app/screens/homepage.dart';
 import 'package:vip_number_app/screens/onBoardingScreen.dart';
+import 'package:vip_number_app/screens/signup_screen.dart';
 import 'package:vip_number_app/widget/bottomNavigationBar.dart';
 
 final router = GoRouter(
   routes: [
     GoRoute(
-      name: "home",
+      name: "onboarding",
       path: "/",
-      builder: (context, state) => OnBoardingScreen(),
+      builder: (context, state) => LoginScreen(),
     ),
     GoRoute(
-      name: "resultPage",
+      name: "home",
       path: "/home",
       builder: (context, state) => const BottomNavigation(),
-      // routes: [],
+    ),
+    GoRoute(
+      name: "Login",
+      path: "/loginscreen",
+      builder: (context, state) => LoginScreen(),
+    ),
+    GoRoute(
+      name: "Signup",
+      path: "/signupscreen",
+      builder: (context, state) => SignupScreen(),
     ),
   ],
 );
